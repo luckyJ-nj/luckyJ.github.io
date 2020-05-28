@@ -5,18 +5,39 @@
   
 
   
-  <title>LuckyJ的技术博客</title>
+  <title>Jira任务单ID 与 Gitlab 代码提交配置 | LuckyJ的技术博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="欢迎交流">
-<meta property="og:type" content="website">
-<meta property="og:title" content="LuckyJ的技术博客">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="Jira 任务单ID 与 Gitlab 代码提交配置 一、配置的目标 1、实现Gitlab提交代码时 在注解中填入&quot;Jira 任务单ID(issueid)”实现gitlab 的commit自动关联到jira 任务单中。 2、通过Gitlab 服务侧pre-receive实现对提交代码的commit注解中必须包含jira issue id的强制要求 二、配置方法：目标一：Gitlab co">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Jira任务单ID 与 Gitlab 代码提交配置">
+<meta property="og:url" content="http://yoursite.com/2020/05/27/Jira%E4%BB%BB%E5%8A%A1%E5%8D%95ID%20%E4%B8%8E%20Gitlab%20%E4%BB%A3%E7%A0%81%E6%8F%90%E4%BA%A4%E9%85%8D%E7%BD%AE/index.html">
 <meta property="og:site_name" content="LuckyJ的技术博客">
-<meta property="og:description" content="欢迎交流">
+<meta property="og:description" content="Jira 任务单ID 与 Gitlab 代码提交配置 一、配置的目标 1、实现Gitlab提交代码时 在注解中填入&quot;Jira 任务单ID(issueid)”实现gitlab 的commit自动关联到jira 任务单中。 2、通过Gitlab 服务侧pre-receive实现对提交代码的commit注解中必须包含jira issue id的强制要求 二、配置方法：目标一：Gitlab co">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://yoursite.com/2020/05/27/Jira%E4%BB%BB%E5%8A%A1%E5%8D%95ID%20%E4%B8%8E%20Gitlab%20%E4%BB%A3%E7%A0%81%E6%8F%90%E4%BA%A4%E9%85%8D%E7%BD%AE/media/image1.png">
+<meta property="og:image" content="http://yoursite.com/2020/05/27/Jira%E4%BB%BB%E5%8A%A1%E5%8D%95ID%20%E4%B8%8E%20Gitlab%20%E4%BB%A3%E7%A0%81%E6%8F%90%E4%BA%A4%E9%85%8D%E7%BD%AE/media/image2.png">
+<meta property="og:image" content="http://yoursite.com/2020/05/27/Jira%E4%BB%BB%E5%8A%A1%E5%8D%95ID%20%E4%B8%8E%20Gitlab%20%E4%BB%A3%E7%A0%81%E6%8F%90%E4%BA%A4%E9%85%8D%E7%BD%AE/media/image3.png">
+<meta property="og:image" content="http://yoursite.com/2020/05/27/Jira%E4%BB%BB%E5%8A%A1%E5%8D%95ID%20%E4%B8%8E%20Gitlab%20%E4%BB%A3%E7%A0%81%E6%8F%90%E4%BA%A4%E9%85%8D%E7%BD%AE/media/image4.png">
+<meta property="og:image" content="http://yoursite.com/2020/05/27/Jira%E4%BB%BB%E5%8A%A1%E5%8D%95ID%20%E4%B8%8E%20Gitlab%20%E4%BB%A3%E7%A0%81%E6%8F%90%E4%BA%A4%E9%85%8D%E7%BD%AE/media/image5.png">
+<meta property="og:image" content="http://yoursite.com/2020/05/27/Jira%E4%BB%BB%E5%8A%A1%E5%8D%95ID%20%E4%B8%8E%20Gitlab%20%E4%BB%A3%E7%A0%81%E6%8F%90%E4%BA%A4%E9%85%8D%E7%BD%AE/media/image6.png">
+<meta property="og:image" content="http://yoursite.com/2020/05/27/Jira%E4%BB%BB%E5%8A%A1%E5%8D%95ID%20%E4%B8%8E%20Gitlab%20%E4%BB%A3%E7%A0%81%E6%8F%90%E4%BA%A4%E9%85%8D%E7%BD%AE/media/image7.png">
+<meta property="og:image" content="http://yoursite.com/2020/05/27/Jira%E4%BB%BB%E5%8A%A1%E5%8D%95ID%20%E4%B8%8E%20Gitlab%20%E4%BB%A3%E7%A0%81%E6%8F%90%E4%BA%A4%E9%85%8D%E7%BD%AE/media/image8.png">
+<meta property="og:image" content="http://yoursite.com/2020/05/27/Jira%E4%BB%BB%E5%8A%A1%E5%8D%95ID%20%E4%B8%8E%20Gitlab%20%E4%BB%A3%E7%A0%81%E6%8F%90%E4%BA%A4%E9%85%8D%E7%BD%AE/media/image9.png">
+<meta property="og:image" content="http://yoursite.com/2020/05/27/Jira%E4%BB%BB%E5%8A%A1%E5%8D%95ID%20%E4%B8%8E%20Gitlab%20%E4%BB%A3%E7%A0%81%E6%8F%90%E4%BA%A4%E9%85%8D%E7%BD%AE/media/image10.png">
+<meta property="og:image" content="http://yoursite.com/2020/05/27/Jira%E4%BB%BB%E5%8A%A1%E5%8D%95ID%20%E4%B8%8E%20Gitlab%20%E4%BB%A3%E7%A0%81%E6%8F%90%E4%BA%A4%E9%85%8D%E7%BD%AE/media/image11.png">
+<meta property="og:image" content="http://yoursite.com/2020/05/27/Jira%E4%BB%BB%E5%8A%A1%E5%8D%95ID%20%E4%B8%8E%20Gitlab%20%E4%BB%A3%E7%A0%81%E6%8F%90%E4%BA%A4%E9%85%8D%E7%BD%AE/media/image12.png">
+<meta property="og:image" content="http://yoursite.com/2020/05/27/Jira%E4%BB%BB%E5%8A%A1%E5%8D%95ID%20%E4%B8%8E%20Gitlab%20%E4%BB%A3%E7%A0%81%E6%8F%90%E4%BA%A4%E9%85%8D%E7%BD%AE/media/image13.png">
+<meta property="og:image" content="http://yoursite.com/2020/05/27/Jira%E4%BB%BB%E5%8A%A1%E5%8D%95ID%20%E4%B8%8E%20Gitlab%20%E4%BB%A3%E7%A0%81%E6%8F%90%E4%BA%A4%E9%85%8D%E7%BD%AE/media/image14.png">
+<meta property="og:image" content="http://yoursite.com/2020/05/27/Jira%E4%BB%BB%E5%8A%A1%E5%8D%95ID%20%E4%B8%8E%20Gitlab%20%E4%BB%A3%E7%A0%81%E6%8F%90%E4%BA%A4%E9%85%8D%E7%BD%AE/media/image15.png">
+<meta property="og:image" content="http://yoursite.com/2020/05/27/Jira%E4%BB%BB%E5%8A%A1%E5%8D%95ID%20%E4%B8%8E%20Gitlab%20%E4%BB%A3%E7%A0%81%E6%8F%90%E4%BA%A4%E9%85%8D%E7%BD%AE/media/image16.png">
+<meta property="og:image" content="http://yoursite.com/2020/05/27/Jira%E4%BB%BB%E5%8A%A1%E5%8D%95ID%20%E4%B8%8E%20Gitlab%20%E4%BB%A3%E7%A0%81%E6%8F%90%E4%BA%A4%E9%85%8D%E7%BD%AE/media/image17.png">
+<meta property="og:image" content="http://yoursite.com/2020/05/27/Jira%E4%BB%BB%E5%8A%A1%E5%8D%95ID%20%E4%B8%8E%20Gitlab%20%E4%BB%A3%E7%A0%81%E6%8F%90%E4%BA%A4%E9%85%8D%E7%BD%AE/media/image18.png">
+<meta property="article:published_time" content="2020-05-27T09:52:12.332Z">
+<meta property="article:modified_time" content="2020-05-28T02:25:26.100Z">
 <meta property="article:author" content="LuckyJ">
 <meta property="article:tag" content="IT民工">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/2020/05/27/Jira%E4%BB%BB%E5%8A%A1%E5%8D%95ID%20%E4%B8%8E%20Gitlab%20%E4%BB%A3%E7%A0%81%E6%8F%90%E4%BA%A4%E9%85%8D%E7%BD%AE/media/image1.png">
   
     <link rel="alternate" href="/atom.xml" title="LuckyJ的技术博客" type="application/atom+xml">
   
@@ -69,9 +90,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-Jira任务单ID 与 Gitlab 代码提交配置" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-Jira任务单ID 与 Gitlab 代码提交配置" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/05/27/Jira%E4%BB%BB%E5%8A%A1%E5%8D%95ID%20%E4%B8%8E%20Gitlab%20%E4%BB%A3%E7%A0%81%E6%8F%90%E4%BA%A4%E9%85%8D%E7%BD%AE/" class="article-date">
   <time datetime="2020-05-27T09:52:12.332Z" itemprop="datePublished">2020-05-27</time>
@@ -84,8 +103,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/05/27/Jira%E4%BB%BB%E5%8A%A1%E5%8D%95ID%20%E4%B8%8E%20Gitlab%20%E4%BB%A3%E7%A0%81%E6%8F%90%E4%BA%A4%E9%85%8D%E7%BD%AE/">Jira任务单ID 与 Gitlab 代码提交配置</a>
+    <h1 class="article-title" itemprop="name">
+      Jira任务单ID 与 Gitlab 代码提交配置
     </h1>
   
 
@@ -240,11 +259,9 @@
     </footer>
   </div>
   
-</article>
-
-
+    
   
-
+</article>
 
 </section>
         
